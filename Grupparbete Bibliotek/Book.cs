@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Grupparbete_Bibliotek
 {
-    internal class Book(string author, string title, string isbn, int stock, int year)
+    public class Book(string author, string title, string isbn, int stock, int year)
     {
         string Isbn { get; } = isbn;
         string Author { get; set; } = author;
