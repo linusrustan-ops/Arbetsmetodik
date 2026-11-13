@@ -6,26 +6,26 @@ namespace Grupparbete_Bibliotek
 {
     public class BookRepository : IBookRepository
     {
-        void Add(Book book)
+        public void Add(Book book)
         {
 
         }
-        void Remove(string isbn)
+        public void Remove(string isbn)
         {
 
         }
-        IEnumerable<Book> GetAll()
+        public IEnumerable<Book> GetAll()
+        {
+            return new List<Book>();
+        }
+        public void Update(Book book)
         {
 
         }
-        void Update(Book book)
+
+        public Book? GetByKey(string isbn)
         {
-
-        }
-
-        Book? GetByKey(string isbn)
-        {
-
+            return null;
         }
     }
 }
