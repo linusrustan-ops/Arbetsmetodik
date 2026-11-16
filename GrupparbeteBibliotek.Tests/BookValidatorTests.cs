@@ -27,5 +27,18 @@ namespace GrupparbeteBibliotek.Tests
             book.Title = " ";
             Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
         }
+        [Fact] // Gränsfall - Acceptanskriterium 2 
+        public void Validate_EmptyAuthor_Throws()
+        {
+            var book = ValidBook();
+            book.Author = " ";
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
+        [Fact] // Gränfall - Acceptanskriterium 2
+        public void Validate_EmptyIsbn_Throws()
+        {
+            var book = new Book("Astrid Lindgren", "Mio min Mio", "", 2, 1954);
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
     }
 }
