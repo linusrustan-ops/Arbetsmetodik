@@ -46,5 +46,18 @@ namespace GrupparbeteBibliotek.Tests
             var book = new Book("Astrid Lindgren", "Mio min Mio", "9789129688313", 0, 1954);
             Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
         }
+        [Fact] // Gränsfall - år i framtiden (eget antagande)
+        public void Validate_FutureYear_Throws()
+        {
+            var book = new Book("Astrid Lindgren", "Mio min Mio", "9789129688313", 2, DateTime.Now.Year + 1);
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
+
+        [Fact] // Gränsfall - år 0, inget år angivet (eget antagande)
+        public void Validate_ZeroYear_Throws()
+        {
+            var book = new Book("Astrid Lindgren", "Mio min Mio", "9789129688313", 2, 0);
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
     }
 }
