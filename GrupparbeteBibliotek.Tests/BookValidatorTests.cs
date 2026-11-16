@@ -20,5 +20,12 @@ namespace GrupparbeteBibliotek.Tests
             book.Title = "";
             Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
         }
+        [Fact] //Gränsfall - mellanslag räknas som tomt
+        public void Validate_WhitespaceTitle_Throws()
+        {
+            var book = ValidBook();
+            book.Title = " ";
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
     }
 }
