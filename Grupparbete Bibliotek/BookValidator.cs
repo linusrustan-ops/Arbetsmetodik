@@ -4,15 +4,15 @@ namespace Grupparbete_Bibliotek
     public static class BookValidator
     {
         public static void Validate (Book book)
-        {            
-            if (string.IsNullOrWhiteSpace(book.Title))
-                throw new ArgumentException("Titel får inte vara tom.");
-           
-            if (string.IsNullOrWhiteSpace(book.Author))
-                throw new ArgumentException("Författare får inte vara tom");
-
-            if (string.IsNullOrWhiteSpace(book.Isbn))
-                throw new ArgumentException("ISBN får inte vara tomt");
+        {
+            RequireText(book.Isbn, "ISBN");
+            RequireText(book.Title, "Titel");
+            RequireText(book.Author, "Författare");
+        }
+        private static void RequireText(string value, string fieldName)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException($"{fieldName} får inte vara tomt.");
         }
     }
 }
