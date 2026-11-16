@@ -4,7 +4,7 @@ namespace GrupparbeteBibliotek.Tests
 {
     public class BookValidatorTests
     {
-        //Hjälpmedtod: en bok där allt är giltigt
+        //Hjälpmetod: en bok där allt är giltigt
         private static Book ValidBook() =>
             new Book("Astrid Lindgren", "Mio min Mio", "9789129688313", 2, 1954);
         [Fact] //Normalfall - Acceptanskriterium 1
@@ -34,10 +34,16 @@ namespace GrupparbeteBibliotek.Tests
             book.Author = " ";
             Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
         }
-        [Fact] // Gränfall - Acceptanskriterium 2
+        [Fact] // Gränsfall - Acceptanskriterium 2
         public void Validate_EmptyIsbn_Throws()
         {
             var book = new Book("Astrid Lindgren", "Mio min Mio", "", 2, 1954);
+            Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
+        }
+        [Fact] //Gränsfall - 0 exemplar
+        public void Validate_ZeroStock_Throws()
+        {
+            var book = new Book("Astrid Lindgren", "Mio min Mio", "9789129688313", 0, 1954);
             Assert.Throws<ArgumentException>(() => BookValidator.Validate(book));
         }
     }
