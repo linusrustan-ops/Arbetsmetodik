@@ -8,6 +8,9 @@ namespace Grupparbete_Bibliotek
             RequireText(book.Isbn, "ISBN");
             RequireText(book.Title, "Titel");
             RequireText(book.Author, "Författare");
+
+            if (book.Stock < 1)
+                throw new ArgumentException("Antal exemplar måste vara minst 1.");
         }
         private static void RequireText(string value, string fieldName)
         {
