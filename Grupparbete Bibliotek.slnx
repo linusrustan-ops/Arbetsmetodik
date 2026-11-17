@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Grupparbete Bibliotek/Grupparbete Bibliotek.csproj" />
+  <Project Path="GrupparbeteBibliotek.Tests/GrupparbeteBibliotek.Tests.csproj" Id="ea9febc3-a5f5-430e-9bae-86f9ff4dd461" />
 </Solution>

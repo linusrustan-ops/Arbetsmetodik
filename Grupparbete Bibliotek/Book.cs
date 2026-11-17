@@ -8,10 +8,10 @@ namespace Grupparbete_Bibliotek
 {
     public class Book(string author, string title, string isbn, int stock, int year)
     {
-        string Isbn { get; } = isbn;
-        string Author { get; set; } = author;
-        string Title { get; set; } = title;
-        int Stock { get; } = stock;
-        int Year { get; } = year;
+        public string Isbn { get; } = isbn;
+       public string Author { get; set; } = author;
+       public string Title { get; set; } = title;
+       public int Stock { get; } = stock;
+        public int Year { get; } = year;
     }
 }
