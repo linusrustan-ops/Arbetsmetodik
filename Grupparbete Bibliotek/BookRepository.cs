@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Grupparbete_Bibliotek
 {
     public class BookRepository : IBookRepository
     {
+        private readonly Dictionary<string, Book> books = new Dictionary<string, Book>();
         public void Add(Book book)
         {
-
+            books.Add(book.Isbn, book);
         }
         public void Remove(string isbn)
         {
@@ -16,7 +17,7 @@ namespace Grupparbete_Bibliotek
         }
         public IEnumerable<Book> GetAll()
         {
-            return new List<Book>();
+            return books.Values;
         }
         public void Update(Book book)
         {
