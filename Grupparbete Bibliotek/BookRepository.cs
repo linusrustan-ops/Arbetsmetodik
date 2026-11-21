@@ -6,7 +6,7 @@ namespace Grupparbete_Bibliotek
 {
     public class BookRepository : IBookRepository
     {
-        private readonly Dictionary<string, Book> books = new Dictionary<string, Book>();
+        private readonly Dictionary<string, Book> books = new();
         public void Add(Book book)
         {
             books.Add(book.Isbn, book);
