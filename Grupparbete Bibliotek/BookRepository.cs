@@ -6,10 +6,10 @@ namespace Grupparbete_Bibliotek
 {
     public class BookRepository : IBookRepository
     {
-        private readonly Dictionary<string, Book> books = new();
+        private readonly Dictionary<string, Book> bookdictionary = new();
         public void Add(Book book)
         {
-            books.Add(book.Isbn, book);
+            bookdictionary.Add(book.Isbn, book);
         }
         public void Remove(string isbn)
         {
@@ -17,7 +17,7 @@ namespace Grupparbete_Bibliotek
         }
         public IEnumerable<Book> GetAll()
         {
-            return books.Values;
+            return bookdictionary.Values;
         }
         public void Update(Book book)
         {
