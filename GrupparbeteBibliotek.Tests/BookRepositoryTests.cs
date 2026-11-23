@@ -31,9 +31,10 @@ namespace GrupparbeteBibliotek.Tests
             var repository = new BookRepository();
 
             var book = new Book(
-              "Astrid Lindgren",
+             "9789129688313", 
+             "Astrid Lindgren",
               "Mio min Mio",
-              "9789129688313",
+              
               2,
               1954
           );
@@ -45,6 +46,40 @@ namespace GrupparbeteBibliotek.Tests
             Assert.DoesNotContain(repository.GetAll(),
                 savedBook => savedBook.Isbn == book.Isbn);
         }
+
+        [Fact] // Test task 15 - borttagning från fil
+        public void Remove_ExistingBook_BookIsRemovedFromFile()
+        {
+            string filePath = Path.GetTempFileName();
+
+            try
+            {
+                var repository = new BookRepository();
+
+                var book = new Book(
+                    "9789129688313",
+                    "Astrid Lindgren",
+                    "Mio min Mio",
+                    2,
+                    1954
+                );
+
+                repository.Add(book);
+                repository.SaveToFile(filePath);
+
+                repository.Remove(book.Isbn);
+                repository.SaveToFile(filePath);
+
+                var newRepository = new BookRepository();
+                newRepository.LoadFromFile(filePath);
+
+                Assert.DoesNotContain(newRepository.GetAll(),
+                    savedBook => savedBook.Isbn == book.Isbn);
+            }
+            finally
+            {
+                File.Delete(filePath);
+            }
         }
 
         [Fact]
