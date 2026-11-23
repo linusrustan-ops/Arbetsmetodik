@@ -47,6 +47,74 @@ namespace GrupparbeteBibliotek.Tests
             {
                 File.Delete(filePath);
             }
+
+        }
+        [Fact]
+        public void SaveToFile_ExistingBook_BookIsSavedToFile()
+        {
+            string filePath = Path.GetTempFileName();
+
+            try
+            {
+                var repository = new BookRepository();
+
+                var book = new Book(
+                    "9789129688313",
+                    "Astrid Lindgren",
+                    "Mio min Mio",
+                    2,
+                    1954
+                );
+
+                repository.Add(book);
+                repository.SaveToFile(filePath);
+
+                string[] lines = File.ReadAllLines(filePath);
+
+                Assert.Contains(
+                    "9789129688313;Mio min Mio;Astrid Lindgren;2;1954",
+                    lines);
+            }
+            finally
+            {
+                File.Delete(filePath);
+            }
+        }
+        [Fact]
+        public void SaveAndLoad_BookPreservesAllInformation()
+        {
+            string filePath = Path.GetTempFileName();
+
+            try
+            {
+                var repository = new BookRepository();
+
+                var book = new Book(
+                    "9789129688313",
+                    "Astrid Lindgren",
+                    "Mio min Mio",
+                    2,
+                    1954
+                );
+
+                repository.Add(book);
+                repository.SaveToFile(filePath);
+
+                var newRepository = new BookRepository();
+                newRepository.LoadFromFile(filePath);
+
+                var loadedBook = Assert.Single(newRepository.GetAll());
+
+                Assert.Equal(book.Isbn, loadedBook.Isbn);
+                Assert.Equal(book.Author, loadedBook.Author);
+                Assert.Equal(book.Title, loadedBook.Title);
+                Assert.Equal(book.Stock, loadedBook.Stock);
+                Assert.Equal(book.Year, loadedBook.Year);
+            }
+            finally
+            {
+                File.Delete(filePath);
+            }
         }
     }
 }

@@ -20,8 +20,8 @@ namespace Grupparbete_Bibliotek
             foreach (string line in lines)
             {
                 string[] parts = line.Split(';');
-                
-                if (parts.Length !=4 )
+
+                if (parts.Length != 4 && parts.Length != 5)
                 {
                     continue;
                 }
@@ -33,9 +33,32 @@ namespace Grupparbete_Bibliotek
                 {
                     continue;
                 }
-                Book book = new Book(isbn, author, title, stock, 0);
+               
+                int year = 0;
+
+                if (parts.Length == 5)
+                {
+                    if (!int.TryParse(parts[4], out year))
+                    {
+                        continue;
+                    }
+                }
+
+                Book book = new Book(isbn, author, title, stock, year);
+
                 bookdictionary.Add(book.Isbn, book);
             }
+        }
+        public void SaveToFile(string filePath = "Booklist.txt")
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Book book in bookdictionary.Values)
+            {
+                string line = $"{book.Isbn};{book.Title};{book.Author};{book.Stock};{book.Year}";
+                lines.Add(line);
+            }
+            File.WriteAllLines(filePath, lines);
         }
         public void Add(Book book)
         { 
