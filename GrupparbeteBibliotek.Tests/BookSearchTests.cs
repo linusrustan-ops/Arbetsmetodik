@@ -13,6 +13,7 @@ namespace GrupparbeteBibliotek.Tests
             repo.Add(new Book("1", "Tolkien", "Lord of the rings 1", 1, 1901));
             repo.Add(new Book("2", "Tolkien", "Lord of the rings 2", 2, 1902));
             repo.Add(new Book("3", "Tolkien", "Lord of the rings 3", 3, 1903));
+            repo.Add(new Book("4", "George", "A Song of ice and fire", 4, 1904));
             return new BookService(repo);
         }
 
@@ -30,6 +31,18 @@ namespace GrupparbeteBibliotek.Tests
             Assert.NotNull(result);
             Assert.Empty(result);
 
+        }
+
+        [Fact]
+
+        public void SearchByAuthor_ReturnsAllBookByThatAuthor()
+        {
+            var service = CreateService();
+
+            var result = service.Search("Tolkien");
+
+            Assert.Equal(3, result.Count());
+            Assert.All(result, book => Assert.Equal("Tolkien", book.Author));
         }
     }
 }
