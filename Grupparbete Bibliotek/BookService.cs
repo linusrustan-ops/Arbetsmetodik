@@ -19,7 +19,10 @@ namespace Grupparbete_Bibliotek
             {
                 return new List<Book>();
             }
-            throw new NotImplementedException();
+            var books = _bookRepository.GetAll();
+            var booksByAuthor = books.Where(book => book.Author == input);
+            return booksByAuthor;
+            
         }
     }
 }
