@@ -13,7 +13,7 @@ namespace Grupparbete_Bibliotek
         }
         public void Remove(string isbn)
         {
-
+            bookdictionary.Remove(isbn);
         }
         public IEnumerable<Book> GetAll()
         {

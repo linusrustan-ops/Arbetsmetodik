@@ -22,6 +22,26 @@ namespace GrupparbeteBibliotek.Tests
 
             Assert.Contains(repository.GetAll(),
                 savedBook => savedBook.Isbn == book.Isbn);
-        } 
+        }
+        [Fact] //test task 15
+        public void Remove_ExistingBook_BookNoLongerExists()
+        {
+            var repository = new BookRepository();
+
+            var book = new Book(
+              "Astrid Lindgren",
+              "Mio min Mio",
+              "9789129688313",
+              2,
+              1954
+          );
+
+            repository.Add(book);
+
+            repository.Remove(book.Isbn);
+
+            Assert.DoesNotContain(repository.GetAll(),
+                savedBook => savedBook.Isbn == book.Isbn);
+        }
     }
 }
