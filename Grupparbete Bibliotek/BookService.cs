@@ -15,6 +15,10 @@ namespace Grupparbete_Bibliotek
 
         public IEnumerable<Book> Search(string? input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return new List<Book>();
+            }
             throw new NotImplementedException();
         }
     }
