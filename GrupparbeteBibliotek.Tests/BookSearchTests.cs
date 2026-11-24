@@ -44,5 +44,28 @@ namespace GrupparbeteBibliotek.Tests
             Assert.Equal(3, result.Count());
             Assert.All(result, book => Assert.Equal("Tolkien", book.Author));
         }
+
+        [Fact] // test task 20
+        public void SearchByTitle_ReturnsMatchingBook()
+        {
+            var service = CreateService();
+
+            var result = service.Search("Lord of the rings 1");
+
+            var book = Assert.Single(result);
+
+            Assert.Equal("Lord of the rings 1", book.Title);
+        }
+
+        [Fact]
+        public void SearchByPartialTitle_ReturnsMatchingBooks()
+        {
+            var service = CreateService();
+
+            var result = service.Search("Lord");
+
+            Assert.Equal(3, result.Count());
+            Assert.All(result, book => Assert.Contains("Lord", book.Title));
+        }
     }
 }
