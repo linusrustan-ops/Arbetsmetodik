@@ -20,9 +20,11 @@ namespace Grupparbete_Bibliotek
                 return new List<Book>();
             }
             var books = _bookRepository.GetAll();
-            var booksByAuthor = books.Where(book => book.Author == input);
-            return booksByAuthor;
-            
+            var matchingBooks = books.Where(book =>
+    book.Author == input || book.Title == input);
+
+            return matchingBooks;
+
         }
     }
 }
