@@ -79,6 +79,10 @@ namespace Grupparbete_Bibliotek
 
         public Book? GetByKey(string isbn)
         {
+            if (bookdictionary.TryGetValue(isbn, out Book? book))
+            {
+                return book;
+            }
             return null;
         }
     }

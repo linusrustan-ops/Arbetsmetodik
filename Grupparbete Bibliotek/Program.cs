@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            BookRepository bookRepository = new BookRepository();
+            BookService bookService = new BookService(bookRepository);
+            UI Ui = new UI(bookService);
+            Ui.Menu();
         }
     }
 }
