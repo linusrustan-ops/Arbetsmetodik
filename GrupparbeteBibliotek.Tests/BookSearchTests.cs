@@ -53,6 +53,7 @@ namespace GrupparbeteBibliotek.Tests
 
             Assert.NotNull(result);
             Assert.Empty(result);
+        }
 
         [Fact] // test task 20
         public void SearchByTitle_ReturnsMatchingBook()
