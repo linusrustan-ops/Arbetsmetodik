@@ -44,5 +44,19 @@ namespace GrupparbeteBibliotek.Tests
             Assert.Equal(3, result.Count());
             Assert.All(result, book => Assert.Equal("Tolkien", book.Author));
         }
+
+        [Fact]
+        public void Search_HarryPotter_IgnoresCase()
+        {
+            var repo = new BookRepository();
+            repo.Add(new Book("5", "J.K. Rowling", "Harry Potter", 1, 1997));
+
+            var service = new BookService(repo);
+
+            var result = service.Search("harry potter");
+
+            Assert.Single(result);
+            Assert.Equal("Harry Potter", result.First().Title);
+        }
     }
 }

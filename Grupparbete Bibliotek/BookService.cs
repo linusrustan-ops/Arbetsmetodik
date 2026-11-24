@@ -21,8 +21,7 @@ namespace Grupparbete_Bibliotek
                 return new List<Book>();
             }
             var books = _bookRepository.GetAll();
-            var booksByAuthor = books.Where(book => book.Author == input);
-            return booksByAuthor;
+            return books.Where(book => book.Author == input || string.Equals(book.Title, input, StringComparison.OrdinalIgnoreCase));
         }
 
         public bool CheckIfBookIsValidAndAdd(Book? book)
