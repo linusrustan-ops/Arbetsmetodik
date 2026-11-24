@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Grupparbete_Bibliotek
 {
@@ -8,7 +9,7 @@ namespace Grupparbete_Bibliotek
     {
 
         public void Menu()
-        { 
+        {
             while (true)
             {
                 Console.WriteLine("Välkommen till bibliotekssystemet!\n" +
@@ -16,7 +17,8 @@ namespace Grupparbete_Bibliotek
                 "[2]. Låna ut en bok\n" +
                 "[3]. Lämna in en bok\n" +
                 "[4]. Visa alla böcker\n" +
-                "[5]. Exit\n");
+                "[5]. Sök efter böcker\n" +
+                "[6]. Exit\n");
 
                 string input = ReadString("\nDitt val:\n");
 
@@ -34,7 +36,7 @@ namespace Grupparbete_Bibliotek
                             Console.WriteLine("Boken du skapat är ogiltig eller finns redan med det ISBN nummret");
                             break;
                         }
-                        
+
 
                     case "2":
                         Console.WriteLine("Inte implementerat än");
@@ -49,6 +51,10 @@ namespace Grupparbete_Bibliotek
                         break;
 
                     case "5":
+                        SearchBooks();
+                        break;
+
+                    case "6":
                         return;
 
                     default:
@@ -57,9 +63,25 @@ namespace Grupparbete_Bibliotek
                 }
             }
         }
-        
 
 
+        public void SearchBooks()
+        {
+            string input = ReadString("Ange sökord:");
+
+            var result = bookService.Search(input).ToList();
+
+            if (!result.Any())
+            {
+                Console.WriteLine("Inga matchande böcker hittades.");
+                return;
+            }
+
+            foreach (var book in result)
+            {
+                Console.WriteLine($"{book.Isbn} | {book.Author} | {book.Title} | {book.Stock} | {book.Year} |");
+            }
+        }
         public static string ReadString(string message)
         {
             while (true)
