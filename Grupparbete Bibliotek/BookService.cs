@@ -21,7 +21,7 @@ namespace Grupparbete_Bibliotek
             }
             var books = _bookRepository.GetAll();
             var matchingBooks = books.Where(book =>
-    book.Author == input || book.Title == input);
+     book.Author == input || book.Title.Contains(input));
 
             return matchingBooks;
 

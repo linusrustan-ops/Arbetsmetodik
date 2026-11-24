@@ -56,5 +56,16 @@ namespace GrupparbeteBibliotek.Tests
 
             Assert.Equal("Lord of the rings 1", book.Title);
         }
+
+        [Fact]
+        public void SearchByPartialTitle_ReturnsMatchingBooks()
+        {
+            var service = CreateService();
+
+            var result = service.Search("Lord");
+
+            Assert.Equal(3, result.Count());
+            Assert.All(result, book => Assert.Contains("Lord", book.Title));
+        }
     }
 }
