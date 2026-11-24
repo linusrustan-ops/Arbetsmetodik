@@ -44,6 +44,15 @@ namespace GrupparbeteBibliotek.Tests
             Assert.Equal(3, result.Count());
             Assert.All(result, book => Assert.Equal("Tolkien", book.Author));
         }
+        [Fact] // test task 19
+        public void Search_NonExistingBook_ReturnsEmptyCollection()
+        {
+            var service = CreateService();
+
+            var result = service.Search("Finns inte");
+
+            Assert.NotNull(result);
+            Assert.Empty(result);
 
         [Fact] // test task 20
         public void SearchByTitle_ReturnsMatchingBook()
