@@ -4,13 +4,6 @@ using System.Text;
 
 namespace Grupparbete_Bibliotek
 {
-    public class Book
-    {
-        public string ISBN { get; set; }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int Availeblecopies { get; set; }
-    }
 
     public class BooksInStore
     {
@@ -20,10 +13,11 @@ namespace Grupparbete_Bibliotek
 
             books.Add("001", new Book
             {
-                ISBN = "001",
-                Title = "test",
-                Author = "test", 
-                Availeblecopies = 999,
+                Isbn = "001",
+                title = "test",
+                author = "test", 
+                stock = 999,
+                year = 1000,
             });
 
             foreach (var book in books.Values)
