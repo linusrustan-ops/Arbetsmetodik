@@ -26,14 +26,14 @@ namespace Grupparbete_Bibliotek
                 {
                     case "1":
                         Book? book = RegisterNewBook();
-                        if (book != null)
+                        if (bookService.CheckIfBookIsValidAndAdd(book))
                         {
-                            bookService.CheckIfBookIsValidAndAdd(book);
+                            Console.WriteLine("Boken har lagts till");
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("Boken du skapat är ogiltig eller finns redan med det ISBN nummret");
+                            Console.WriteLine("Boken skapades inte");
                             break;
                         }
 
@@ -61,6 +61,9 @@ namespace Grupparbete_Bibliotek
                         Console.WriteLine("Ogiltigt svar försök igen");
                         break;
                 }
+                Console.WriteLine("Tryck på valfri tangent för att fortsätta");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
 
