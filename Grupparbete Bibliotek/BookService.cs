@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Grupparbete_Bibliotek
             {
                 return new List<Book>();
             }
+
             var books = _bookRepository.GetAll();
-            var booksByAuthor = books.Where(book => book.Author == input);
-            return booksByAuthor;
+
+            var searchResults = books.Where(book =>
+                book.Author.Contains(input, StringComparison.OrdinalIgnoreCase) ||
+                book.Title.Contains(input, StringComparison.OrdinalIgnoreCase));
+
+            return searchResults;
         }
 
         public bool CheckIfBookIsValidAndAdd(Book? book)
