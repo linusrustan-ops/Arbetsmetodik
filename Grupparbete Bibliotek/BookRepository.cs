@@ -7,7 +7,7 @@ namespace Grupparbete_Bibliotek
 {
     public class BookRepository : IBookRepository
     {
-        private readonly Dictionary<string, Book> bookdictionary = new();
+        private readonly Dictionary<string, Book> bookdictionary = new(); //Skapa en dictionary som kan lagra böcker
         public void LoadFromFile(string filePath = "Booklist.txt")
         {
             
@@ -60,15 +60,15 @@ namespace Grupparbete_Bibliotek
             }
             File.WriteAllLines(filePath, lines);
         }
-        public void Add(Book book)
+        public void Add(Book book) // Add-metoden GREEN
         { 
             bookdictionary.Add(book.Isbn, book);
         }
         public void Remove(string isbn)
         {
-
+            bookdictionary.Remove(isbn);
         }
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Book> GetAll() // Gett all metoden som returnerar alla böcker som finns i dictionary.
         {
             return bookdictionary.Values;
         }
