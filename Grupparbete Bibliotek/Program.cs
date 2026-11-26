@@ -1,4 +1,5 @@
-﻿namespace Grupparbete_Bibliotek
+﻿
+namespace Grupparbete_Bibliotek
 {
     public class Program
     {
@@ -6,9 +7,16 @@
         {
             BookRepository bookRepository = new BookRepository();
             bookRepository.LoadFromFile();
+
             BookService bookService = new BookService(bookRepository);
-            UI Ui = new UI(bookService);
-            Ui.Menu();
+
+            ILoanRepository loanRepository = new LoanRepository();
+          
+
+            UI ui = new UI(bookService, loanRepository);
+
+            ui.Menu();
+
             bookRepository.SaveToFile();
         }
     }
