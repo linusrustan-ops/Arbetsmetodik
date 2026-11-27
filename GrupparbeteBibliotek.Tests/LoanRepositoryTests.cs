@@ -5,6 +5,8 @@ namespace GrupparbeteBibliotek.Tests
 {
     public class LoanRepositoryTests
     {
+
+
         [Fact]
         public void Add_TwoBooksForSameUser_ReturnsBothLoans()
         {
@@ -49,5 +51,30 @@ namespace GrupparbeteBibliotek.Tests
             // Assert
             Assert.Empty(result);
         }
+
+        [Fact]
+        public void Add_LoanToRepository_LoanIsSaved()
+        {
+            // Arrange
+            var repository = new LoanRepository();
+
+            var loan = new Loan
+            {
+                Book = new Book("3", "George Orwell", "1984", 1, 1949),
+                UserId = "User1",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(14)
+            };
+
+            // Act
+            repository.Add("User1", loan);
+
+            var result = repository.GetAll();
+
+            // Assert
+            Assert.Single(result);
+            Assert.Contains(loan, result);
+        }
+
     }
 }

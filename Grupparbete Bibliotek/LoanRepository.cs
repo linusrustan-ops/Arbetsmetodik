@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Grupparbete_Bibliotek
 {
@@ -24,6 +26,13 @@ namespace Grupparbete_Bibliotek
             }
 
             return new List<Loan>();
+        }
+
+        public List<Loan> GetAll()
+        {
+            return loans.Values
+                .SelectMany(userLoans => userLoans)
+                .ToList();
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Grupparbete_Bibliotek
         void Add(string userId, Loan loan);
 
         List<Loan> GetByUserId(string userId);
+        List<Loan> GetAll();
     }
 }
