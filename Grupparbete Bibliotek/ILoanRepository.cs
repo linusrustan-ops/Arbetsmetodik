@@ -4,9 +4,9 @@ namespace Grupparbete_Bibliotek
 {
     public interface ILoanRepository
     {
-        void Add(string userId, Loan loan);
+        void Add(string userId, loansByUserId loan);
 
-        List<Loan> GetByUserId(string userId);
-        List<Loan> GetAll();
+        List<loansByUserId> GetByUserId(string userId);
+        List<loansByUserId> GetAll();
     }
 }

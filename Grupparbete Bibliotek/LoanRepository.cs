@@ -6,29 +6,29 @@ namespace Grupparbete_Bibliotek
 {
     public class LoanRepository : ILoanRepository
     {
-        private readonly Dictionary<string, List<Loan>> loans = new();
+        private readonly Dictionary<string, List<loansByUserId>> loans = new();
 
-        public void Add(string userId, Loan loan)
+        public void Add(string userId, loansByUserId loan)
         {
             if (!loans.ContainsKey(userId))
             {
-                loans[userId] = new List<Loan>();
+                loans[userId] = new List<loansByUserId>();
             }
 
             loans[userId].Add(loan);
         }
 
-        public List<Loan> GetByUserId(string userId)
+        public List<loansByUserId> GetByUserId(string userId)
         {
-            if (loans.TryGetValue(userId, out List<Loan>? userLoans))
+            if (loans.TryGetValue(userId, out List<loansByUserId>? userLoans))
             {
                 return userLoans;
             }
 
-            return new List<Loan>();
+            return new List<loansByUserId>();
         }
 
-        public List<Loan> GetAll()
+        public List<loansByUserId> GetAll()
         {
             return loans.Values
                 .SelectMany(userLoans => userLoans)

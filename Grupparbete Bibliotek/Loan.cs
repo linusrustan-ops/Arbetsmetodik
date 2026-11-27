@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Grupparbete_Bibliotek
 {
-    public class Loan
+    public class loansByUserId
     {
         public required Book Book { get; set; }
         public DateTime StartDate { get; set; }
