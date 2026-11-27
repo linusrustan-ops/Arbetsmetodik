@@ -76,7 +76,7 @@ namespace Grupparbete_Bibliotek
         {
             string userId = ReadString("Ange användarens ID:");
 
-            List<Loan> loans = loanRepository.GetByUserId(userId);
+            List<loansByUserId> loans = loanRepository.GetByUserId(userId);
 
             if (!loans.Any())
             {
